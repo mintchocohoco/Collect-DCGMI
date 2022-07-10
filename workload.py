@@ -82,10 +82,8 @@ class TrainCallback(tf.keras.callbacks.Callback):
     def on_train_begin(self, logs=None):
         os.system("./dcgmi_field.sh &")
     def on_train_end(self, logs=None):
-        os.system("PID=$!")
-        os.system("sleep 2")
-        os.system("kill $PID")
         os.system("mv dcgmi-log.txt " + file_name )
+        os.system("pkill dcgmi")
 
         
 model.fit(x_train, y_train,
