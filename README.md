@@ -1,3 +1,3 @@
 # Collect-DCGMI
 
-sh startCLI_Virginia.sh g4dn.xlarge
+sh startCLI_Oregon.sh g4dn.xlarge
