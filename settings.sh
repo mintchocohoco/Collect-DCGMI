@@ -20,5 +20,4 @@ sudo apt-get update && sudo apt-get install -y datacenter-gpu-manager
 sudo systemctl --now enable nvidia-dcgm
 
 # train
-git clone https://github.com/hyoonseo159357/Collect-DCGMI.git
-#python3.7 workload.py
+python3.7 workload.py
