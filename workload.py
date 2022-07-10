@@ -88,9 +88,7 @@ class TrainCallback(tf.keras.callbacks.Callback):
         os.system("kill $PID")
         os.system("mv dcgmi-log.txt " ,file_name )
 
-
-
-
+        
 model.fit(x_train, y_train,
     batch_size=batch_size,
     epochs=epochs,
@@ -98,13 +96,3 @@ model.fit(x_train, y_train,
     validation_data=(x_test, y_test),
     callbacks = TrainCallback())
 
-import pickle
-
-# # save data
-# with open(epoch_ver_filename,'wb') as fw:
-#     pickle.dump(epoch_dict, fw)
-# # load data
-# with open(epoch_ver_filename, 'rb') as fr:
-#     user_loaded = pickle.load(fr)
-# # show data
-# print(user_loaded)
