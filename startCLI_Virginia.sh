@@ -11,7 +11,6 @@ SG_ID="sg-0f2dfaeaef1c8f808"
 echo 'launch instance'
 LAUNCH_INFO=$(aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type $INSTANCE_TYPE \
 --key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID )
-#--user-data settings.sh
 sleep 60
 echo 'get instance info'
 INSTANCE_ID=$(echo $LAUNCH_INFO | jq -r '. | .Instances[0].InstanceId')
