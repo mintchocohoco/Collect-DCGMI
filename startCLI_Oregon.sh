@@ -10,7 +10,7 @@ SG_ID="sg-0050bf02c2488921b"
 # Launch instance & get informations
 echo 'launch instance'
 LAUNCH_INFO=$(aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type $INSTANCE_TYPE \
---key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --user-data settings.sh)
+--key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$TAG}]')   
 sleep 60
 echo 'get instance info'
 INSTANCE_ID=$(echo $LAUNCH_INFO | jq -r '. | .Instances[0].InstanceId')
@@ -18,22 +18,16 @@ INSTANCE_DNS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID | jq -r '.
 echo $INSTANCE_DNS
 
 # Instance setting
-sleep 60
-AWS_KEY="ys-oregon2.pem"
-echo 'git clone and setting instance'
-ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'git clone https://github.com/hyoonseo159357/Hardware-Data-Collect.git'
-ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Hardware-Data-Collect/&& sudo bash ./settings.sh'
+# sleep 60
+AWS_KEY="ys.pem"
+# echo 'git clone and setting instance'
+ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'git clone https://github.com/hyoonseo159357/Collect-DCGMI.git'
+ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& sudo bash ./settings.sh'
 
-# Run Experiments
-sleep 60
-echo 'start experiment'
-# ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Hardware-Data-Collect/&& sudo bash ./run_all.sh'
-ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 
-
-# # Get results
-# sleep 10
-# AWS_KEY="ys.pem"
-# scp -i /Users/heoyunseo/desktop/aws_pem/ys.pem -r ubuntu@$INSTANCE_DNS:/home/ubuntu/Hardware-Data2/ .
+# Get results
+sleep 10
+AWS_KEY="ys.pem"
+scp -i /Users/heoyunseo/desktop/aws_pem/ys-oregon2.pem -r ubuntu@$INSTANCE_DNS ./$INSTANCE_TYPE/
 
 # # Terminate instance
 # sleep 10
