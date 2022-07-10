@@ -26,7 +26,7 @@ echo $INSTANCE_DNS
 
 # # Run Experiments
 # sleep 60
-# AWS_KEY="ys.pem"
+AWS_KEY="ys.pem"
 # echo 'start experiment'
 # #ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Hardware-Data-Collect/&& python3.7 workload.py'
 ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 
