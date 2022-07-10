@@ -86,7 +86,7 @@ class TrainCallback(tf.keras.callbacks.Callback):
         os.system("PID=$!")
         os.system("sleep 2")
         os.system("kill $PID")
-        os.system("mv dcgmi-log.txt " ,file_name )
+        os.system("mv dcgmi-log.txt " + file_name )
 
         
 model.fit(x_train, y_train,
