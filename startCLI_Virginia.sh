@@ -3,7 +3,7 @@
 INSTANCE_TYPE=$1
 
 IMAGE_ID="ami-0ea8263cbf553488e"
-AWS_KEY="ys.pem"
+AWS_KEY="ys"
 SUBNET_ID="subnet-f791a893"
 SG_ID="sg-0f2dfaeaef1c8f808"
 
