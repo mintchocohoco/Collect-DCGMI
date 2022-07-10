@@ -7,7 +7,7 @@ import tensorflow as tf
 import numpy as np
 import dataset_info
 import model_info
-import subprocess
+import os
 
 # GPU device check
 device_name = tf.test.gpu_device_name()
@@ -80,13 +80,13 @@ model.compile(loss=tf.keras.losses.categorical_crossentropy,
 epoch_dict = {}
 class TrainCallback(tf.keras.callbacks.Callback):
     def on_train_begin(self, logs=None):
-        subprocess.call(["./dcgmi_field.sh &"])       
+        os.system("./dcgmi_field.sh &")
     def on_train_end(self, logs=None):
-        subprocess.call(["./dcgmi_field.sh &"])
-        subprocess.call(["PID=$!"])
-        subprocess.call(["sleep 2"])
-        subprocess.call(["kill $PID"])
-        subprocess.call(["mv dcgmi-log.txt " ,file_name])
+        os.system("./dcgmi_field.sh &")
+        os.system("PID=$!")
+        os.system("sleep 2")
+        os.system("kill $PID")
+        os.system("mv dcgmi-log.txt " ,file_name )
 
 
 
