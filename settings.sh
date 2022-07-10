@@ -1,3 +1,5 @@
+git clone https://github.com/hyoonseo159357/Collect-DCGMI.git
+
 pip3 install tensorflow==2.7.0
 
 sudo apt update
