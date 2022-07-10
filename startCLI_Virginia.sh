@@ -6,11 +6,12 @@ IMAGE_ID="ami-0ea8263cbf553488e"
 AWS_KEY="ys"
 SUBNET_ID="subnet-f791a893"
 SG_ID="sg-0f2dfaeaef1c8f808"
+SETTING = "settings.sh"
 
 # Launch instance & get informations
 echo 'launch instance'
 LAUNCH_INFO=$(aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type $INSTANCE_TYPE \
---key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --user-data settings.sh )
+--key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --user-data $SETTING )
 sleep 60
 echo 'get instance info'
 INSTANCE_ID=$(echo $LAUNCH_INFO | jq -r '. | .Instances[0].InstanceId')
