@@ -42,7 +42,7 @@ prof_point = args.prof_point
 batch_num = math.ceil(num_data/batch_size)
 epochs = math.ceil(prof_point)
 optimizer = 'SGD'
-file_name = model_name + str(batch_size) + str(epochs) + str(dataset) + str(num_data) + ".txt"
+file_name = str(model_name) + '_' + str(batch_size) + '_' +  str(epochs) + '_' +  str(args.dataset) + '_' +  str(num_data) + ".txt"
 
 ###################### Build Fake Dataset ######################
 x_train_shape = (num_data, img_rows, img_cols, img_channels)
