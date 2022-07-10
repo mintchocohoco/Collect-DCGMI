@@ -10,7 +10,7 @@ SG_ID="sg-0050bf02c2488921b"
 # Launch instance & get informations
 echo 'launch instance'
 LAUNCH_INFO=$(aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type $INSTANCE_TYPE \
---key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ys-dcgmi}]' --user-data settings2.sh )   
+--key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ys-dcgmi2}]' --user-data settings2.sh )   
 
 
 # # Terminate instance
