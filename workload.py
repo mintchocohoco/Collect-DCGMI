@@ -86,6 +86,9 @@ class TrainCallback(tf.keras.callbacks.Callback):
         subprocess.call(["PID=$!"])
         subprocess.call(["sleep 2"])
         subprocess.call(["kill $PID"])
+        subprocess.call(["mv dcgmi-log.txt " ,file_name])
+
+
 
 
 model.fit(x_train, y_train,
