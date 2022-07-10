@@ -19,14 +19,14 @@ echo $INSTANCE_DNS
 
 # Instance setting
 # sleep 60
-# AWS_KEY="ys.pem"
+AWS_KEY="ys.pem"
 # echo 'git clone and setting instance'
 ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& python3.7 workload.py'
 #ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& python3.7 workload.py'
 
 # # Run Experiments
 # sleep 60
-AWS_KEY="ys.pem"
+#AWS_KEY="ys.pem"
 # echo 'start experiment'
 #ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Hardware-Data-Collect/&& python3.7 workload.py'
 #ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 
