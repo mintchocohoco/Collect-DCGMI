@@ -23,7 +23,7 @@ echo $INSTANCE_DNS
 AWS_KEY="ys.pem"
 # echo 'git clone and setting instance'
 ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'git clone https://github.com/hyoonseo159357/Collect-DCGMI.git'
-ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& sudo bash ./settings.sh&& python3.7 workload.py'
+ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& sudo bash ./settings.sh'
 
 # # Run Experiments
 # sleep 60
