@@ -24,7 +24,7 @@ ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& sudo b
 
 # Get results
 sleep 10
-scp -i /Users/heoyunseo/desktop/aws_pem/ys-oregon2.pem -r ubuntu@$INSTANCE_DNS ./$INSTANCE_TYPE/
+scp -i /Users/heoyunseo/desktop/aws_pem/ys-oregon2.pem -r ubuntu@$INSTANCE_DNS:/home/ubuntu/Collect-DCGMI /Users/heoyunseo/desktop/g4dn.xlarge/
 
 # # Terminate instance
 # sleep 10
