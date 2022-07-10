@@ -6,12 +6,11 @@ IMAGE_ID="ami-0ea8263cbf553488e"
 AWS_KEY="ys"
 SUBNET_ID="subnet-f791a893"
 SG_ID="sg-0f2dfaeaef1c8f808"
-SETTING = "settings.sh"
 
 # Launch instance & get informations
 echo 'launch instance'
 LAUNCH_INFO=$(aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type $INSTANCE_TYPE \
---key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --user-data $SETTING )
+--key-name $AWS_KEY --subnet-id $SUBNET_ID --security-group-ids $SG_ID --user-data settings.sh )
 sleep 60
 echo 'get instance info'
 INSTANCE_ID=$(echo $LAUNCH_INFO | jq -r '. | .Instances[0].InstanceId')
@@ -20,9 +19,9 @@ echo $INSTANCE_DNS
 
 # Instance setting
 # sleep 60
-#AWS_KEY="ys.pem"
+AWS_KEY="ys.pem"
 # echo 'git clone and setting instance'
-#ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& python3.7 workload.py'
+ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& python3.7 workload.py'
 #ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& python3.7 workload.py'
 
 # # Run Experiments
