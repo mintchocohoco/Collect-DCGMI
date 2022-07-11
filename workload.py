@@ -107,10 +107,10 @@ model.fit(x_train, y_train,
 
 
 # save data
-with open(epoch_ver_filename,'wb') as fw:
+with open(latency_filename,'wb') as fw:
     pickle.dump(epoch_dict, fw)
 # load data
-with open(epoch_ver_filename, 'rb') as fr:
+with open(latency_filename, 'rb') as fr:
     user_loaded = pickle.load(fr)
 # show data
 print(user_loaded)
