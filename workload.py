@@ -42,7 +42,9 @@ prof_point = args.prof_point
 batch_num = math.ceil(num_data/batch_size)
 epochs = math.ceil(prof_point)
 optimizer = 'SGD'
-file_name = str(model_name) + '_' + str(batch_size) + '_' +  str(epochs) + '_' +  str(args.dataset) + '_' +  str(num_data) + ".txt"
+#file_name = str(model_name) + '_' + str(batch_size) + '_' +  str(epochs) + '_' +  str(args.dataset) + '_' +  str(num_data) + ".txt"
+file_name = str(model_name)+'_batchsize'+str(batch_size)+'_datasize'+str(args.dataset)+'_total_epoch'+str(epochs)+"_totaldata"+str(num_data) + ".txt"
+latency_filename= './'+str(model_name)+'_batchsize'+str(batch_size)+'_datasize'+str(args.dataset)+'_total_epoch'+str(epochs)+"_totaldata"+str(num_data)+'.csv'           
 
 ###################### Build Fake Dataset ######################
 x_train_shape = (num_data, img_rows, img_cols, img_channels)
@@ -84,6 +86,16 @@ class TrainCallback(tf.keras.callbacks.Callback):
     def on_train_end(self, logs=None):
         os.system("mv dcgmi-log.txt " + file_name )
         os.system("pkill dcgmi")
+    def on_epoch_begin(self, epoch, logs=None):
+        global epoch_start
+        self.epoch_time_start = time.time()
+        epoch_start=datetime.fromtimestamp(self.epoch_time_start).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        epoch_dict[epoch] = [epoch_start]
+    def on_epoch_end(self, epoch, logs=None):
+        global epoch_end
+        self.epoch_time_end = time.time()
+        epoch_end=datetime.fromtimestamp(self.epoch_time_end).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        epoch_dict[epoch].append(epoch_end)
 
         
 model.fit(x_train, y_train,
@@ -92,4 +104,14 @@ model.fit(x_train, y_train,
     verbose=1,
     validation_data=(x_test, y_test),
     callbacks = TrainCallback())
+
+
+# save data
+with open(epoch_ver_filename,'wb') as fw:
+    pickle.dump(epoch_dict, fw)
+# load data
+with open(epoch_ver_filename, 'rb') as fr:
+    user_loaded = pickle.load(fr)
+# show data
+print(user_loaded)
 
