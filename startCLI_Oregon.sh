@@ -23,8 +23,8 @@ ssh -o "StrictHostKeyChecking no" -i $AWS_KEY ubuntu@$INSTANCE_DNS 'git clone ht
 ssh -i $AWS_KEY -t ubuntu@$INSTANCE_DNS 'cd /home/ubuntu/Collect-DCGMI/&& sudo -b bash ./settings.sh'
 
 # Get results
-sleep 10
-scp -i /Users/heoyunseo/desktop/aws_pem/ys-oregon2.pem -r ubuntu@$INSTANCE_DNS:/home/ubuntu/Collect-DCGMI /Users/heoyunseo/desktop/$INSTANCE_TYPE/
+# sleep 10
+# scp -i /Users/heoyunseo/desktop/aws_pem/ys-oregon2.pem -r ubuntu@$INSTANCE_DNS:/home/ubuntu/Collect-DCGMI /Users/heoyunseo/desktop/$INSTANCE_TYPE/
 
 # Terminate instance
 # sleep 10
