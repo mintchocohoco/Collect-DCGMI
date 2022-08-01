@@ -20,4 +20,4 @@ sudo apt-get update && sudo apt-get install -y datacenter-gpu-manager
 sudo systemctl --now enable nvidia-dcgm
 
 # train
-#sudo bash ./allworkload.sh
+sudo bash ./allworkload.sh
